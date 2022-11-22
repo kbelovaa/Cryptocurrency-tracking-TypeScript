@@ -1,0 +1,62 @@
+.modal {
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(91, 91, 91, 0.82);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.5s ease-out;
+
+  &.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  &__content {
+    padding: 30px;
+    border-radius: 10px;
+    background-color: rgb(251, 244, 200);
+    transition: all 0.4s ease-out;
+    position: relative;
+  }
+
+  &__close::before,
+  &__close::after {
+    content: '';
+    width: 3px;
+    height: 20px;
+    border-radius: 3px;
+    background: #000;
+    position: absolute;
+    top: 11px;
+    right: 22px;
+    cursor: pointer;
+  }
+
+  &__close::before {
+    transform: rotate(45deg);
+  }
+
+  &__close::after {
+    transform: rotate(-45deg);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .modal {
+    &__content {
+      padding: 15px;
+    }
+
+    &__close::before,
+    &__close::after {
+      width: 2px;
+      height: 12px;
+    }
+  }
+}

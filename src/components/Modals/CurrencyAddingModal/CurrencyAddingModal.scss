@@ -1,0 +1,85 @@
+.adding {
+  &__form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__label {
+    color: #000;
+    margin: 10px 0;
+    text-align: center;
+  }
+
+  &__input {
+    width: 20%;
+    margin: 0 auto;
+    border-radius: 7px;
+    padding: 7px 5px 5px;
+    text-align: center;
+    font-weight: 700;
+    font-family: 'Roboto', sans-serif;
+  }
+
+  &__btn {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    width: 140px;
+    border-radius: 10px;
+    font-weight: 700;
+    padding: 8px;
+    background-color: rgb(42, 40, 37);
+    border: none;
+    color: rgb(255, 238, 141);
+    margin: 30px auto 0;
+    cursor: pointer;
+    transition: all 0.2s ease-out;
+
+    &:hover {
+      background-color: rgb(189, 170, 141);
+      color: #000;
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .adding {
+    &__btn {
+      font-size: 14px;
+      margin: 20px auto 0;
+      width: 120px;
+    }
+    &__input {
+      font-size: 14px;
+      padding: 6px 4px 4px;
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .adding {
+    &__btn {
+      font-size: 12px;
+      margin: 15px auto 0;
+      width: 105px;
+    }
+    &__input {
+      font-size: 12px;
+      padding: 5px 4px 4px;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .adding {
+    &__btn {
+      font-size: 8px;
+      margin: 10px auto 0;
+      width: 75px;
+      padding: 5px;
+    }
+    &__input {
+      font-size: 8px;
+      padding: 4px 3px 3px;
+    }
+  }
+}

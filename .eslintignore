@@ -1,0 +1,5 @@
+# node_modules/ and dot-files are always ignored
+
+webpack.config.js
+node_modules
+dist

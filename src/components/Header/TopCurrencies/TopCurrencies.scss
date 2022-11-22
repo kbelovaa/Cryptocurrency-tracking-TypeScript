@@ -1,0 +1,52 @@
+.top-currencies {
+  &__list {
+    list-style-type: none;
+    display: flex;
+  }
+
+  &__item {
+    margin-left: 30px;
+
+    &:first-of-type {
+      margin-left: 0;
+    }
+  }
+
+  &__ticker {
+    margin-right: 10px;
+    color: #fff;
+  }
+
+  &__price {
+    font-size: 18px;
+    text-shadow: 1px 1px 0px #fffbcc;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .top-currencies__price {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .top-currencies__price {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .top-currencies {
+    &__price {
+      font-size: 12px;
+    }
+
+    &__list {
+      flex-direction: column;
+    }
+
+    &__item {
+      margin: 7px 0 0;
+    }
+  }
+}

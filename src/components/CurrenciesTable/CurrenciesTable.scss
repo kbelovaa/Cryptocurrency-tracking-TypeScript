@@ -1,0 +1,144 @@
+th {
+  border: 1px solid #4e4d4d;
+  border-left: 0;
+  border-right: 0;
+  padding: 5px;
+  text-align: right;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 60px;
+
+  &-head {
+    color: rgb(255, 238, 141);
+
+    &__btn {
+      width: 3%;
+    }
+
+    &__rank {
+      width: 4%;
+    }
+
+    &__name {
+      width: 21%;
+    }
+
+    &__price {
+      width: 9%;
+    }
+
+    &__percent {
+      width: 7%;
+    }
+
+    &__avgprice {
+      width: 11.5%;
+    }
+
+    &__mcap {
+      width: 10%;
+    }
+
+    &__volume {
+      width: 8.5%;
+    }
+
+    &__supply {
+      width: 13.5%;
+    }
+
+    &__maxsupply {
+      width: 12.5%;
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  th {
+    padding: 3px;
+  }
+
+  .table {
+    margin-top: 40px;
+
+    &-head {
+      &__btn {
+        width: 3.9%;
+      }
+
+      &__rank {
+        width: 4.8%;
+      }
+
+      &__name {
+        width: 17.8%;
+      }
+
+      &__price {
+        width: 11.3%;
+      }
+
+      &__percent {
+        width: 8%;
+      }
+
+      &__avgprice {
+        width: 11.3%;
+      }
+
+      &__mcap {
+        width: 10.2%;
+      }
+
+      &__volume {
+        width: 10.7%;
+      }
+
+      &__supply {
+        width: 12.7%;
+      }
+
+      &__maxsupply {
+        width: 9.5%;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .table {
+    margin-top: 30px;
+    &-head {
+      &__btn {
+        width: 3%;
+      }
+
+      &__rank {
+        width: 4%;
+      }
+
+      &__name {
+        width: 25%;
+      }
+
+      &__price {
+        width: 20%;
+      }
+
+      &__percent {
+        width: 10%;
+      }
+
+      &__avgprice {
+        width: 20%;
+      }
+
+      &__mcap {
+        width: 18%;
+      }
+    }
+  }
+}

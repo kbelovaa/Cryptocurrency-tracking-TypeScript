@@ -1,0 +1,23 @@
+.top {
+  box-shadow: 0 0 19px 15px #121010;
+}
+
+.header {
+  padding: 40px 30px;
+  color: gold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media screen and (max-width: 1200px) {
+  .header {
+    padding: 30px 20px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .header {
+    padding: 20px 10px;
+  }
+}

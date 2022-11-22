@@ -1,0 +1,40 @@
+a {
+  text-decoration: none;
+  color: #fff;
+}
+
+td {
+  border: 1px solid #4e4d4d;
+  border-left: 0;
+  border-right: 0;
+  padding: 5px;
+  text-align: right;
+}
+
+.table {
+  &__currency-ticker {
+    margin-left: 5px;
+    color: #959494;
+  }
+
+  &__percent_adding {
+    color: rgb(53, 234, 36);
+  }
+
+  &__percent_deleting {
+    color: rgb(255, 106, 106);
+  }
+}
+
+@media screen and (max-width: 900px) {
+  td {
+    height: 40px;
+    padding: 3px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .table__additional {
+    display: none;
+  }
+}

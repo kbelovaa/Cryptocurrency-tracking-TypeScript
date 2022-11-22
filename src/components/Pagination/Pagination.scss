@@ -1,0 +1,89 @@
+.pagination {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.page {
+  margin-right: 7px;
+
+  &:last-of-type {
+    margin-right: 0;
+  }
+
+  &__link {
+    cursor: pointer;
+    background-color: rgb(255, 238, 141);
+    border: none;
+    display: block;
+    color: #000;
+    text-align: center;
+    padding-top: 4px;
+    font-size: 14px;
+    width: 25px;
+    height: 25px;
+    border-radius: 7px;
+    transition: all 0.2s ease-out;
+
+    &:hover,
+    &_current {
+      background-color: rgb(129, 117, 101);
+      color: #fff;
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .page__link {
+    font-size: 12px;
+    padding-top: 5px;
+    width: 22px;
+    height: 22px;
+  }
+
+  .pagination {
+    margin-top: 40px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .page {
+    margin-right: 5px;
+
+    &:last-of-type {
+      margin-right: 0;
+    }
+
+    &__link {
+      font-size: 10px;
+      padding-top: 4px;
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  .pagination {
+    margin-top: 30px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .page {
+    margin-right: 3px;
+
+    &:last-of-type {
+      margin-right: 0;
+    }
+
+    &__link {
+      font-size: 8px;
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  .pagination {
+    margin-top: 20px;
+  }
+}

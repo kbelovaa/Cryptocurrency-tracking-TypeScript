@@ -1,0 +1,70 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  background: rgb(36, 36, 38);
+  background: linear-gradient(
+      42deg,
+      rgba(36, 36, 38, 1) 26%,
+      rgba(57, 53, 39, 1) 59%,
+      rgba(107, 94, 41, 1) 84%,
+      rgba(185, 151, 9, 1) 100%
+    )
+    no-repeat;
+  background-attachment: fixed;
+  color: #fff;
+  font-family: 'Roboto', sans-serif;
+}
+
+.container {
+  width: 1080px;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 1200px) {
+  body {
+    font-size: 14px;
+  }
+
+  .container {
+    width: 870px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  body {
+    font-size: 12px;
+  }
+
+  .container {
+    width: 570px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  body {
+    font-size: 9px;
+  }
+
+  .container {
+    width: 340px;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  body {
+    font-size: 8px;
+  }
+
+  .container {
+    width: 90%;
+  }
+}
