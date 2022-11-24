@@ -12,6 +12,23 @@
   font-weight: 700;
   font-size: 14px;
 
+  @media screen and (max-width: 1200px) {
+    font-size: 12px;
+    width: 90px;
+  }
+
+  @media screen and (max-width: 900px) {
+    font-size: 10px;
+    width: 75px;
+    padding: 5px 4px 4px;
+  }
+
+  @media screen and (max-width: 600px) {
+    font-size: 8px;
+    width: 65px;
+    padding: 3px;
+  }
+
   &:hover {
     background-color: rgb(129, 117, 101);
     color: #fff;
@@ -22,27 +39,17 @@
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
-}
+  min-height: 63px;
 
-@media screen and (max-width: 1200px) {
-  .btn-back {
-    font-size: 12px;
-    width: 90px;
+  @media screen and (max-width: 1200px) {
+    min-height: 58px;
   }
-}
 
-@media screen and (max-width: 900px) {
-  .btn-back {
-    font-size: 10px;
-    width: 75px;
-    padding: 5px 4px 4px;
+  @media screen and (max-width: 900px) {
+    min-height: 77px;
   }
-}
 
-@media screen and (max-width: 600px) {
-  .btn-back {
-    font-size: 8px;
-    width: 65px;
-    padding: 3px;
+  @media screen and (max-width: 600px) {
+    min-height: 60px;
   }
 }

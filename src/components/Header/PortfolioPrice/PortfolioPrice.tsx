@@ -1,12 +1,17 @@
-import React, { FC, useContext } from 'react';
+import React, { FC, useContext, useEffect, useState } from 'react';
 import useTypedSelector from 'Hooks/useTypedSelector';
 import { ICurrency } from 'Types/currencies';
 import { IAddedCurrency } from 'Types/portfolio';
+import { getSomeCurrencies } from 'Services/requests';
 import { round } from 'Utils/roundingFunctions';
 import ModalsContext from 'Context/ModalsContext';
 import './PortfolioPrice.scss';
 
 const PortfolioPrice: FC = () => {
+  const [currencies, setCurrencies] = useState<ICurrency[]>([]);
+  const [totalPrice, setTotalPrice] = useState<number>(0);
+  const [firstPrice, setFirstPrice] = useState<number>(0);
+
   const context = useContext(ModalsContext);
 
   const portfolioClickHandle = () => {
@@ -15,43 +20,56 @@ const PortfolioPrice: FC = () => {
     }
   };
 
-  const allCurrencies = useTypedSelector<ICurrency[]>((state) => state.currencies.currencies);
   const addedCurrencies = useTypedSelector<IAddedCurrency[]>((state) => state.addedCurrencies.addedCurrencies);
+  const ids: string[] = addedCurrencies.map((cur: IAddedCurrency) => cur.id);
+  const uniqueIds: Set<string> = new Set(ids);
+  const currencyIds: string = Array.from(uniqueIds).join(',');
 
-  let totalPrice = 0;
-  let firstPrice = 0;
+  useEffect(() => {
+    const fetchData = async () => {
+      if (currencyIds !== '') {
+        const response = await getSomeCurrencies(currencyIds);
+        const currenciesData: ICurrency[] = response.data.data;
+        setCurrencies(currenciesData);
+      } else {
+        setCurrencies([]);
+      }
+    };
 
-  if (allCurrencies.length === 0) {
-    return null;
-  }
+    fetchData();
+  }, [addedCurrencies]);
 
-  for (let i = 0; i < addedCurrencies.length; i += 1) {
-    const currency: ICurrency | undefined = allCurrencies.find(
-      (currencyObj: ICurrency) => currencyObj.id === addedCurrencies[i].id
-    );
-    if (currency !== undefined) {
-      totalPrice += Number(currency.priceUsd) * addedCurrencies[i].quantity;
+  useEffect(() => {
+    if (currencies.length !== 0) {
+      setTotalPrice(0);
+      setFirstPrice(0);
+      addedCurrencies.map(async (addedCur: IAddedCurrency) => {
+        const currency: ICurrency = currencies.filter((cur: ICurrency) => cur.id === addedCur.id)[0];
+        setTotalPrice((prevState) => prevState + Number(currency.priceUsd) * addedCur.quantity);
+        setFirstPrice((prevState) => prevState + Number(addedCur.firstPrice) * addedCur.quantity);
+      });
     }
-    firstPrice += Number(addedCurrencies[i].firstPrice) * addedCurrencies[i].quantity;
-  }
-
-  const diff: number = totalPrice - firstPrice;
-  const percent: number = round((diff / firstPrice) * 100);
+  }, [currencies]);
 
   return (
     <div className="portfolio" onClick={portfolioClickHandle}>
-      {addedCurrencies.length !== 0 && (
+      {currencies.length !== 0 && (
         <>
           <p className="portfolio__title">Your portfolio</p>
           <span className="portfolio__price">${round(totalPrice)}</span>
           <span
-            className={diff >= 0 ? 'portfolio__diff portfolio__diff_plus' : 'portfolio__diff portfolio__diff_minus'}
+            className={
+              totalPrice - firstPrice >= 0
+                ? 'portfolio__diff portfolio__diff_plus'
+                : 'portfolio__diff portfolio__diff_minus'
+            }
           >
-            {diff >= 0 ? `+${round(diff)}` : `${round(diff)}`} ({percent} %)
+            {totalPrice - firstPrice >= 0 ? `+${round(totalPrice - firstPrice)}` : `${round(totalPrice - firstPrice)}`}{' '}
+            ({round(((totalPrice - firstPrice) / firstPrice) * 100)} %)
           </span>
         </>
       )}
-      {addedCurrencies.length === 0 && (
+      {addedCurrencies.length === 0 && currencies.length === 0 && (
         <>
           <p className="portfolio__title">Your portfolio</p>
           <span className="portfolio__price portfolio__price_only">$0</span>

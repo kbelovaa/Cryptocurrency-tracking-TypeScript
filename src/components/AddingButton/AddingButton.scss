@@ -10,34 +10,28 @@
   color: #fff;
   border: 1px solid #fff;
 
-  &:hover {
-    background-color: rgb(255, 238, 141);
-    color: #000;
-    border: none;
-  }
-}
-
-@media screen and (max-width: 1200px) {
-  .btn-add {
+  @media screen and (max-width: 1200px) {
     width: 18px;
     height: 18px;
     font-size: 14px;
     padding: 0;
   }
-}
 
-@media screen and (max-width: 900px) {
-  .btn-add {
+  @media screen and (max-width: 900px) {
     width: 16px;
     height: 16px;
     font-size: 12px;
   }
-}
 
-@media screen and (max-width: 600px) {
-  .btn-add {
+  @media screen and (max-width: 600px) {
     width: 14px;
     height: 14px;
     font-size: 10px;
+  }
+
+  &:hover {
+    background-color: rgb(255, 238, 141);
+    color: #000;
+    border: none;
   }
 }

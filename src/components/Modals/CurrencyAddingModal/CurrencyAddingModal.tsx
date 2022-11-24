@@ -4,6 +4,7 @@ import useActions from 'Hooks/useActions';
 import { IAddedCurrency } from 'Types/portfolio';
 import { ICurrency } from 'Types/currencies';
 import ModalsContext from 'Context/ModalsContext';
+import { getCurrency } from 'Services/requests';
 import './CurrencyAddingModal.scss';
 
 const CurrencyAddingModal: FC = () => {
@@ -14,16 +15,17 @@ const CurrencyAddingModal: FC = () => {
 
   const selectedCurrencies = useTypedSelector<IAddedCurrency[]>((state) => state.addedCurrencies.addedCurrencies);
   const temporaryChoice = useTypedSelector<string>((state) => state.addedCurrencies.temporaryChoice);
-  const allCurrencies = useTypedSelector<ICurrency[]>((state) => state.currencies.currencies);
 
-  const addCurrency = (e: React.FormEvent<HTMLFormElement>, number: number) => {
+  const fetchData = async () => {
+    const response = await getCurrency(temporaryChoice);
+    return response.data.data;
+  };
+
+  const addCurrency = async (e: React.FormEvent<HTMLFormElement>, number: number) => {
     e.preventDefault();
     if (number > 0) {
-      const currency: ICurrency | undefined = allCurrencies.find((cur: ICurrency) => cur.id === temporaryChoice);
-      let price = '';
-      if (currency !== undefined) {
-        price = currency.priceUsd;
-      }
+      const currency: ICurrency = await fetchData();
+      const price = currency.priceUsd;
       const day: Date = new Date();
       addCurrencyAction({ id: temporaryChoice, quantity: number, firstPrice: price, date: day.getTime() });
       localStorage.setItem(

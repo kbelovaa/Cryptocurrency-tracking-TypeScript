@@ -8,16 +8,19 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
+  min-height: 134px;
 
-@media screen and (max-width: 1200px) {
-  .header {
+  @media screen and (max-width: 1200px) {
     padding: 30px 20px;
+    min-height: 109px;
   }
-}
 
-@media screen and (max-width: 900px) {
-  .header {
+  @media screen and (max-width: 900px) {
     padding: 20px 10px;
+    min-height: 84px;
+  }
+
+  @media screen and (max-width: 600px) {
+    min-height: 105px;
   }
 }

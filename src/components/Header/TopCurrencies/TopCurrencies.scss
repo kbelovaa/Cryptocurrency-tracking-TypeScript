@@ -2,10 +2,18 @@
   &__list {
     list-style-type: none;
     display: flex;
+
+    @media screen and (max-width: 600px) {
+      flex-direction: column;
+    }
   }
 
   &__item {
     margin-left: 30px;
+
+    @media screen and (max-width: 600px) {
+      margin: 7px 0 0;
+    }
 
     &:first-of-type {
       margin-left: 0;
@@ -20,33 +28,17 @@
   &__price {
     font-size: 18px;
     text-shadow: 1px 1px 0px #fffbcc;
-  }
-}
 
-@media screen and (max-width: 1200px) {
-  .top-currencies__price {
-    font-size: 16px;
-  }
-}
+    @media screen and (max-width: 1200px) {
+      font-size: 16px;
+    }
 
-@media screen and (max-width: 900px) {
-  .top-currencies__price {
-    font-size: 14px;
-  }
-}
+    @media screen and (max-width: 900px) {
+      font-size: 14px;
+    }
 
-@media screen and (max-width: 600px) {
-  .top-currencies {
-    &__price {
+    @media screen and (max-width: 600px) {
       font-size: 12px;
-    }
-
-    &__list {
-      flex-direction: column;
-    }
-
-    &__item {
-      margin: 7px 0 0;
     }
   }
 }

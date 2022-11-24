@@ -1,11 +1,21 @@
-import React, { FC } from 'react';
-import useTypedSelector from 'Hooks/useTypedSelector';
+import React, { FC, useEffect, useState } from 'react';
 import { ICurrency } from 'Types/currencies';
+import { getTopCurrencies } from 'Services/requests';
 import { round } from 'Utils/roundingFunctions';
 import './TopCurrencies.scss';
 
 const TopCurrencies: FC = () => {
-  const currencies = useTypedSelector<ICurrency[]>((state) => state.currencies.currencies.slice(0, 3));
+  const [currencies, setCurrencies] = useState<ICurrency[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await getTopCurrencies();
+      const topCurrencies: ICurrency[] = response.data.data;
+      setCurrencies(topCurrencies);
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <div className="top-currencies">

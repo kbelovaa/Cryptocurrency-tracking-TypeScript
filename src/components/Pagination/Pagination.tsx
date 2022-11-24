@@ -4,12 +4,12 @@ import './Pagination.scss';
 
 interface PaginationProps {
   currenciesPerPage: number;
-  totalCurrencies: number;
   currentPage: number;
 }
 
-const Pagination: FC<PaginationProps> = ({ currenciesPerPage, totalCurrencies, currentPage }) => {
+const Pagination: FC<PaginationProps> = ({ currenciesPerPage, currentPage }) => {
   const pageNumbers: number[] = [];
+  const totalCurrencies = 100;
 
   for (let i = 1; i <= Math.ceil(totalCurrencies / currenciesPerPage); i += 1) {
     pageNumbers.push(i);

@@ -23,6 +23,10 @@
     background-color: rgb(251, 244, 200);
     transition: all 0.4s ease-out;
     position: relative;
+
+    @media screen and (max-width: 600px) {
+      padding: 15px;
+    }
   }
 
   &__close::before,
@@ -36,6 +40,11 @@
     top: 11px;
     right: 22px;
     cursor: pointer;
+
+    @media screen and (max-width: 600px) {
+      width: 2px;
+      height: 12px;
+    }
   }
 
   &__close::before {
@@ -44,19 +53,5 @@
 
   &__close::after {
     transform: rotate(-45deg);
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .modal {
-    &__content {
-      padding: 15px;
-    }
-
-    &__close::before,
-    &__close::after {
-      width: 2px;
-      height: 12px;
-    }
   }
 }

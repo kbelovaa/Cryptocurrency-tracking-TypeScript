@@ -7,7 +7,7 @@ const defaultState: ICurrencies = {
 const currenciesReducer = (state = defaultState, action: UploadCurrenciesAction): ICurrencies => {
   switch (action.type) {
     case CurrenciesActionTypes.UPLOAD_CURRENCIES:
-      return { ...state, currencies: [...action.payload] };
+      return { ...state, currencies: [...state.currencies, ...action.payload] };
     default:
       return state;
   }

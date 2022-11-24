@@ -1,18 +1,29 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import useTypedSelector from 'Hooks/useTypedSelector';
 import { IAddedCurrency } from 'Types/portfolio';
 import { ICurrency } from 'Types/currencies';
 import DeletingButton from 'Components/Modals/PortfolioModal/DeletingButton/DeletingButton';
+import { getSomeCurrencies } from 'Services/requests';
 import { round } from 'Utils/roundingFunctions';
 import './PortfolioModal.scss';
 
 const PortfolioModal: FC = () => {
-  const addedCurrencies = useTypedSelector<IAddedCurrency[]>((state) => state.addedCurrencies.addedCurrencies);
-  const allCurrencies = useTypedSelector<ICurrency[]>((state) => state.currencies.currencies);
+  const [currencies, setCurrencies] = useState<ICurrency[]>([]);
 
-  if (allCurrencies.length === 0) {
-    return null;
-  }
+  const addedCurrencies = useTypedSelector<IAddedCurrency[]>((state) => state.addedCurrencies.addedCurrencies);
+  const ids: string[] = addedCurrencies.map((cur: IAddedCurrency) => cur.id);
+  const uniqueIds: Set<string> = new Set(ids);
+  const currencyIds: string = Array.from(uniqueIds).join(',');
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await getSomeCurrencies(currencyIds);
+      const currenciesData: ICurrency[] = response.data.data;
+      setCurrencies(currenciesData);
+    };
+
+    fetchData();
+  }, [addedCurrencies]);
 
   return (
     <div className="portfolio__content">
@@ -31,15 +42,13 @@ const PortfolioModal: FC = () => {
             </tr>
           </thead>
           <tbody>
-            {addedCurrencies.map((cur: IAddedCurrency, index: number) => {
-              const currency: ICurrency | undefined = allCurrencies.find(
-                (currencyObj: ICurrency) => currencyObj.id === cur.id
-              );
-              if (currency !== undefined) {
+            {addedCurrencies.map((addedCurrency: IAddedCurrency, index: number) => {
+              if (currencies.length !== 0 && currencies.length === Array.from(uniqueIds).length) {
+                const currency: ICurrency = currencies.filter((cur: ICurrency) => cur.id === addedCurrency.id)[0];
                 return (
-                  <tr key={cur.id + index} className="portfolio-table__row">
+                  <tr key={currency.id + index} className="portfolio-table__row">
                     <td>
-                      <DeletingButton currencyDate={cur.date} />
+                      <DeletingButton currencyDate={addedCurrency.date} />
                     </td>
                     <td>{index + 1}</td>
                     <td>
@@ -48,14 +57,14 @@ const PortfolioModal: FC = () => {
                         <span className="portfolio-table__currency-ticker">{currency.symbol}</span>
                       </div>
                     </td>
-                    <td>{cur.quantity}</td>
-                    <td>${round(cur.firstPrice)}</td>
+                    <td>{addedCurrency.quantity}</td>
+                    <td>${round(addedCurrency.firstPrice)}</td>
                     <td>${round(currency.priceUsd)}</td>
-                    <td>${round(round(currency.priceUsd) * cur.quantity)}</td>
+                    <td>${round(round(currency.priceUsd) * addedCurrency.quantity)}</td>
                   </tr>
                 );
               }
-              return <></>;
+              return null;
             })}
           </tbody>
         </table>

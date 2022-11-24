@@ -18,6 +18,21 @@
     text-align: center;
     font-weight: 700;
     font-family: 'Roboto', sans-serif;
+
+    @media screen and (max-width: 1200px) {
+      font-size: 14px;
+      padding: 6px 4px 4px;
+    }
+
+    @media screen and (max-width: 900px) {
+      font-size: 12px;
+      padding: 5px 4px 4px;
+    }
+
+    @media screen and (max-width: 600px) {
+      font-size: 8px;
+      padding: 4px 3px 3px;
+    }
   }
 
   &__btn {
@@ -34,52 +49,28 @@
     cursor: pointer;
     transition: all 0.2s ease-out;
 
-    &:hover {
-      background-color: rgb(189, 170, 141);
-      color: #000;
-    }
-  }
-}
-
-@media screen and (max-width: 1200px) {
-  .adding {
-    &__btn {
+    @media screen and (max-width: 1200px) {
       font-size: 14px;
       margin: 20px auto 0;
       width: 120px;
     }
-    &__input {
-      font-size: 14px;
-      padding: 6px 4px 4px;
-    }
-  }
-}
 
-@media screen and (max-width: 900px) {
-  .adding {
-    &__btn {
+    @media screen and (max-width: 900px) {
       font-size: 12px;
       margin: 15px auto 0;
       width: 105px;
     }
-    &__input {
-      font-size: 12px;
-      padding: 5px 4px 4px;
-    }
-  }
-}
 
-@media screen and (max-width: 600px) {
-  .adding {
-    &__btn {
+    @media screen and (max-width: 600px) {
       font-size: 8px;
       margin: 10px auto 0;
       width: 75px;
       padding: 5px;
     }
-    &__input {
-      font-size: 8px;
-      padding: 4px 3px 3px;
+
+    &:hover {
+      background-color: rgb(189, 170, 141);
+      color: #000;
     }
   }
 }

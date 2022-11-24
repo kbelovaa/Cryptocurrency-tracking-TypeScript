@@ -9,36 +9,30 @@
   color: #fff;
   border: none;
 
-  &:hover {
-    background-color: rgb(255, 238, 141);
-    color: #000;
-    border: 1px solid #000;
-  }
-}
-
-@media screen and (max-width: 1200px) {
-  .btn-delete {
+  @media screen and (max-width: 1200px) {
     width: 18px;
     height: 18px;
     font-size: 14px;
     padding-bottom: 1px;
   }
-}
 
-@media screen and (max-width: 900px) {
-  .btn-delete {
+  @media screen and (max-width: 900px) {
     width: 16px;
     height: 16px;
     font-size: 12px;
     padding-bottom: 3px;
   }
-}
 
-@media screen and (max-width: 600px) {
-  .btn-delete {
+  @media screen and (max-width: 600px) {
     width: 14px;
     height: 14px;
     font-size: 10px;
     padding-bottom: 1px;
+  }
+
+  &:hover {
+    background-color: rgb(255, 238, 141);
+    color: #000;
+    border: 1px solid #000;
   }
 }

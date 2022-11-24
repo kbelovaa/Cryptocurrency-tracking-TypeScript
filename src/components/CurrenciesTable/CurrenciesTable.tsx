@@ -1,5 +1,6 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import useActions from 'Hooks/useActions';
 import useTypedSelector from 'Hooks/useTypedSelector';
 import { ICurrency } from 'Types/currencies';
 import CurrencyRow from 'Components/CurrenciesTable/CurrencyRow/CurrencyRow';
@@ -7,6 +8,8 @@ import Pagination from 'Components/Pagination/Pagination';
 import './CurrenciesTable.scss';
 
 const CurrenciesTable: FC = () => {
+  const { fetchCurrencies } = useActions();
+
   const { num } = useParams<{ num?: string }>();
   const currentPage: number = Number.isNaN(Number(num)) ? 1 : Number(num);
 
@@ -15,7 +18,16 @@ const CurrenciesTable: FC = () => {
   const currenciesPerPage = 10;
   const lastCurrencyIndex: number = currentPage * currenciesPerPage;
   const firstCurrencyIndex: number = lastCurrencyIndex - currenciesPerPage;
-  const currentCurrencies: ICurrency[] = currencies.slice(firstCurrencyIndex, lastCurrencyIndex);
+  const currentCurrencies: ICurrency[] = currencies.filter(
+    (currencyObj: ICurrency) =>
+      Number(currencyObj.rank) > firstCurrencyIndex && Number(currencyObj.rank) <= lastCurrencyIndex
+  );
+
+  useEffect(() => {
+    if (currentCurrencies.length === 0) {
+      fetchCurrencies(currenciesPerPage, firstCurrencyIndex);
+    }
+  }, [num]);
 
   return (
     <div className="container">
@@ -40,7 +52,7 @@ const CurrenciesTable: FC = () => {
           ))}
         </tbody>
       </table>
-      <Pagination currenciesPerPage={currenciesPerPage} totalCurrencies={currencies.length} currentPage={currentPage} />
+      <Pagination currenciesPerPage={currenciesPerPage} currentPage={currentPage} />
     </div>
   );
 };

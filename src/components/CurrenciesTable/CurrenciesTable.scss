@@ -4,140 +4,140 @@ th {
   border-right: 0;
   padding: 5px;
   text-align: right;
+
+  @media screen and (max-width: 900px) {
+    padding: 3px;
+  }
 }
 
 .table {
   width: 100%;
+  min-height: 349px;
   border-collapse: collapse;
   margin-top: 60px;
+
+  @media screen and (max-width: 1200px) {
+    min-height: 336px;
+  }
+
+  @media screen and (max-width: 900px) {
+    min-height: 437px;
+    margin-top: 40px;
+  }
+
+  @media screen and (max-width: 600px) {
+    min-height: 431px;
+    margin-top: 30px;
+  }
 
   &-head {
     color: rgb(255, 238, 141);
 
     &__btn {
       width: 3%;
+
+      @media screen and (max-width: 900px) {
+        width: 3.9%;
+      }
+
+      @media screen and (max-width: 600px) {
+        width: 3%;
+      }
     }
 
     &__rank {
       width: 4%;
+
+      @media screen and (max-width: 900px) {
+        width: 4.8%;
+      }
+
+      @media screen and (max-width: 600px) {
+        width: 4%;
+      }
     }
 
     &__name {
       width: 21%;
+
+      @media screen and (max-width: 900px) {
+        width: 17.8%;
+      }
+
+      @media screen and (max-width: 600px) {
+        width: 25%;
+      }
     }
 
     &__price {
       width: 9%;
+
+      @media screen and (max-width: 900px) {
+        width: 11.3%;
+      }
+
+      @media screen and (max-width: 600px) {
+        width: 20%;
+      }
     }
 
     &__percent {
       width: 7%;
+
+      @media screen and (max-width: 900px) {
+        width: 8%;
+      }
+
+      @media screen and (max-width: 600px) {
+        width: 10%;
+      }
     }
 
     &__avgprice {
       width: 11.5%;
+
+      @media screen and (max-width: 900px) {
+        width: 11.3%;
+      }
+
+      @media screen and (max-width: 600px) {
+        width: 20%;
+      }
     }
 
     &__mcap {
       width: 10%;
+
+      @media screen and (max-width: 900px) {
+        width: 10.2%;
+      }
+
+      @media screen and (max-width: 600px) {
+        width: 18%;
+      }
     }
 
     &__volume {
       width: 8.5%;
+
+      @media screen and (max-width: 900px) {
+        width: 10.7%;
+      }
     }
 
     &__supply {
       width: 13.5%;
+
+      @media screen and (max-width: 900px) {
+        width: 12.7%;
+      }
     }
 
     &__maxsupply {
       width: 12.5%;
-    }
-  }
-}
 
-@media screen and (max-width: 900px) {
-  th {
-    padding: 3px;
-  }
-
-  .table {
-    margin-top: 40px;
-
-    &-head {
-      &__btn {
-        width: 3.9%;
-      }
-
-      &__rank {
-        width: 4.8%;
-      }
-
-      &__name {
-        width: 17.8%;
-      }
-
-      &__price {
-        width: 11.3%;
-      }
-
-      &__percent {
-        width: 8%;
-      }
-
-      &__avgprice {
-        width: 11.3%;
-      }
-
-      &__mcap {
-        width: 10.2%;
-      }
-
-      &__volume {
-        width: 10.7%;
-      }
-
-      &__supply {
-        width: 12.7%;
-      }
-
-      &__maxsupply {
+      @media screen and (max-width: 900px) {
         width: 9.5%;
-      }
-    }
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .table {
-    margin-top: 30px;
-    &-head {
-      &__btn {
-        width: 3%;
-      }
-
-      &__rank {
-        width: 4%;
-      }
-
-      &__name {
-        width: 25%;
-      }
-
-      &__price {
-        width: 20%;
-      }
-
-      &__percent {
-        width: 10%;
-      }
-
-      &__avgprice {
-        width: 20%;
-      }
-
-      &__mcap {
-        width: 18%;
       }
     }
   }
