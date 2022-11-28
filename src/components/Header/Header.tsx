@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 import useTypedSelector from 'Hooks/useTypedSelector';
 import { IAddedCurrency } from 'Types/portfolio';
 import { ICurrency } from 'Types/currencies';
-import { getSomeCurrencies } from 'Services/requests';
+import { getCurrency, getSomeCurrencies } from 'Services/requests';
 import PortfolioPrice from 'Components/Header/PortfolioPrice/PortfolioPrice';
 import TopCurrencies from 'Components/Header/TopCurrencies/TopCurrencies';
 import ModalWindow from 'Components/Modals/ModalWindow';
@@ -24,12 +24,33 @@ const Header: FC = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      if (currencyIds !== '') {
-        const response = await getSomeCurrencies(currencyIds);
-        const currenciesData: ICurrency[] = response.data.data;
-        setCurrencies(currenciesData);
+      if (currencies.length === 0) {
+        if (currencyIds !== '') {
+          const response = await getSomeCurrencies(currencyIds);
+          const currenciesData: ICurrency[] = response.data.data;
+          setCurrencies(currenciesData);
+        } else {
+          setCurrencies([]);
+        }
       } else {
-        setCurrencies([]);
+        if (addedCurrencies.length !== 0) {
+          const lastAddedCurrency: ICurrency | undefined = currencies.filter(
+            (cur: ICurrency) => cur.id === addedCurrencies[addedCurrencies.length - 1].id
+          )[0];
+          if (lastAddedCurrency === undefined) {
+            const response = await getCurrency(addedCurrencies[addedCurrencies.length - 1].id);
+            const currenciesData: ICurrency = response.data.data;
+            setCurrencies((prevState) => [...prevState, currenciesData]);
+          }
+        }
+        currencies.forEach((currency: ICurrency) => {
+          const oldCurrency: IAddedCurrency | undefined = addedCurrencies.filter(
+            (addedCur: IAddedCurrency) => addedCur.id === currency.id
+          )[0];
+          if (oldCurrency === undefined) {
+            setCurrencies(currencies.filter((cur: ICurrency) => cur.id !== currency.id));
+          }
+        });
       }
     };
 
@@ -42,7 +63,7 @@ const Header: FC = () => {
         <div className="container">
           <div className="header">
             <TopCurrencies />
-            <PortfolioPrice currencies={currencies} addedCurrencies={addedCurrencies} />
+            <PortfolioPrice currencies={currencies} addedCurrencies={addedCurrencies} uniqueIds={uniqueIds} />
           </div>
         </div>
       </div>

@@ -8,9 +8,10 @@ import './PortfolioPrice.scss';
 interface PortfolioPriceProps {
   currencies: ICurrency[];
   addedCurrencies: IAddedCurrency[];
+  uniqueIds: Set<string>;
 }
 
-const PortfolioPrice: FC<PortfolioPriceProps> = ({ currencies, addedCurrencies }) => {
+const PortfolioPrice: FC<PortfolioPriceProps> = ({ currencies, addedCurrencies, uniqueIds }) => {
   const [totalPrice, setTotalPrice] = useState<number>(0);
   const [firstPrice, setFirstPrice] = useState<number>(0);
 
@@ -23,7 +24,7 @@ const PortfolioPrice: FC<PortfolioPriceProps> = ({ currencies, addedCurrencies }
   };
 
   useEffect(() => {
-    if (currencies.length !== 0) {
+    if (currencies.length !== 0 && currencies.length === Array.from(uniqueIds).length) {
       setTotalPrice(0);
       setFirstPrice(0);
       addedCurrencies.map(async (addedCur: IAddedCurrency) => {
@@ -32,7 +33,7 @@ const PortfolioPrice: FC<PortfolioPriceProps> = ({ currencies, addedCurrencies }
         setFirstPrice((prevState) => prevState + Number(addedCur.firstPrice) * addedCur.quantity);
       });
     }
-  }, [currencies]);
+  }, [currencies, addedCurrencies]);
 
   return (
     <div className="portfolio" onClick={portfolioClickHandle}>

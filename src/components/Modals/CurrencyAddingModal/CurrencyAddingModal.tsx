@@ -47,6 +47,18 @@ const CurrencyAddingModal: FC = () => {
     }
   };
 
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (/^[\d.,]*$/.test(e.target.value)) {
+      if (
+        (/[.,]/.test(e.target.value.slice(-1)) && /[.,]/.test(e.target.value.slice(0, -1))) ||
+        /[.,]/.test(e.target.value.slice(0, 1))
+      ) {
+        return;
+      }
+      setInputValue(e.target.value);
+    }
+  };
+
   return (
     <form
       className="adding__form"
@@ -56,7 +68,7 @@ const CurrencyAddingModal: FC = () => {
         Enter the amount of cryptocurrency
       </label>
       <input
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setInputValue(e.target.value)}
+        onChange={handleInputChange}
         value={inputValue}
         className="adding__input"
         type="text"
