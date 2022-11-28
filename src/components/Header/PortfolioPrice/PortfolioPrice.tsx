@@ -1,14 +1,16 @@
 import React, { FC, useContext, useEffect, useState } from 'react';
-import useTypedSelector from 'Hooks/useTypedSelector';
 import { ICurrency } from 'Types/currencies';
 import { IAddedCurrency } from 'Types/portfolio';
-import { getSomeCurrencies } from 'Services/requests';
 import { round } from 'Utils/roundingFunctions';
 import ModalsContext from 'Context/ModalsContext';
 import './PortfolioPrice.scss';
 
-const PortfolioPrice: FC = () => {
-  const [currencies, setCurrencies] = useState<ICurrency[]>([]);
+interface PortfolioPriceProps {
+  currencies: ICurrency[];
+  addedCurrencies: IAddedCurrency[];
+}
+
+const PortfolioPrice: FC<PortfolioPriceProps> = ({ currencies, addedCurrencies }) => {
   const [totalPrice, setTotalPrice] = useState<number>(0);
   const [firstPrice, setFirstPrice] = useState<number>(0);
 
@@ -19,25 +21,6 @@ const PortfolioPrice: FC = () => {
       context.setIsPortfolioModalOpen(true);
     }
   };
-
-  const addedCurrencies = useTypedSelector<IAddedCurrency[]>((state) => state.addedCurrencies.addedCurrencies);
-  const ids: string[] = addedCurrencies.map((cur: IAddedCurrency) => cur.id);
-  const uniqueIds: Set<string> = new Set(ids);
-  const currencyIds: string = Array.from(uniqueIds).join(',');
-
-  useEffect(() => {
-    const fetchData = async () => {
-      if (currencyIds !== '') {
-        const response = await getSomeCurrencies(currencyIds);
-        const currenciesData: ICurrency[] = response.data.data;
-        setCurrencies(currenciesData);
-      } else {
-        setCurrencies([]);
-      }
-    };
-
-    fetchData();
-  }, [addedCurrencies]);
 
   useEffect(() => {
     if (currencies.length !== 0) {

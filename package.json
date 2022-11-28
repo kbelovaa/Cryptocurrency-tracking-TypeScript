@@ -1,6 +1,6 @@
 {
   "homepage": "https://github.com/kbelovaa/Cryptocurrency-tracking-TypeScript",
-  "name": "cryptocurrency-tracking-ts",
+  "name": "cryptocurrency-tracking-typescript",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -58,8 +58,12 @@
     "webpack-dev-server": "^4.11.1"
   },
   "dependencies": {
+    "@progress/kendo-drawing": "^1.17.2",
+    "@progress/kendo-licensing": "^1.2.2",
     "@progress/kendo-react-charts": "^5.9.0",
+    "@progress/kendo-react-intl": "^5.9.0",
     "@progress/kendo-theme-material": "^5.11.0",
+    "@redux-devtools/extension": "^3.2.3",
     "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.9",
     "@types/react-redux": "^7.1.24",
@@ -70,7 +74,6 @@
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.4.3",
     "redux": "^4.2.0",
-    "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.2"
   }
 }

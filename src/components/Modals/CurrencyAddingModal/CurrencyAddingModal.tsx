@@ -62,6 +62,7 @@ const CurrencyAddingModal: FC = () => {
         type="text"
         id="crypto-amount"
         autoComplete="off"
+        required
       />
       <input className="adding__btn" type="submit" value="Add to portfolio" />
     </form>

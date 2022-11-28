@@ -1,4 +1,5 @@
-export const round = (number: string | number): number => Math.round(Number(number) * 100) / 100;
+export const round = (number: string | number): number =>
+  Number(String(Math.round(Number(number) * 1000) / 1000).replace(/[,.]?0+$/, ''));
 
 export const convert = (number: string | null): number | string => {
   if (number === null) {

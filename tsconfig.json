@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": "src/",
+    "baseUrl": ".",
     "outDir": "./dist/",
     "sourceMap": true,
     "noImplicitAny": true,
@@ -18,7 +18,19 @@
     "declaration": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "lib": ["ES2021.String", "dom"]
+    "lib": ["ES2021.String", "dom"],
+    "paths": {
+      "Assets/*": ["src/assets/*"],
+      "Components/*": ["src/components/*"],
+      "Constants/*": ["src/constants/*"],
+      "Context/*": ["src/context/*"],
+      "Hooks/*": ["src/hooks/*"],
+      "Pages/*": ["src/pages/*"],
+      "Services/*": ["src/services/*"],
+      "Store/*": ["src/store/*"],
+      "Types/*": ["src/types/*"],
+      "Utils/*": ["src/utils/*"],
+    },
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "build"]
