@@ -1,4 +1,10 @@
 import { FC } from 'react';
+import { ICurrency } from 'Types/currencies';
+import { IAddedCurrency } from 'Types/portfolio';
 import './PortfolioPrice.scss';
-declare const PortfolioPrice: FC;
+interface PortfolioPriceProps {
+    currencies: ICurrency[];
+    addedCurrencies: IAddedCurrency[];
+}
+declare const PortfolioPrice: FC<PortfolioPriceProps>;
 export default PortfolioPrice;
