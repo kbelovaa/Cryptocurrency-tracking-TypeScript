@@ -1,15 +1,3 @@
-th {
-  border: 1px solid #4e4d4d;
-  border-left: 0;
-  border-right: 0;
-  padding: 5px;
-  text-align: right;
-
-  @media screen and (max-width: 900px) {
-    padding: 3px;
-  }
-}
-
 .table {
   width: 100%;
   min-height: 349px;
@@ -33,111 +21,123 @@ th {
   &-head {
     color: rgb(255, 238, 141);
 
-    &__btn {
-      width: 3%;
+    &__cell {
+      border: 1px solid #4e4d4d;
+      border-left: 0;
+      border-right: 0;
+      padding: 5px;
+      text-align: right;
 
       @media screen and (max-width: 900px) {
-        width: 3.9%;
+        padding: 3px;
       }
 
-      @media screen and (max-width: 600px) {
+      &_btn {
         width: 3%;
+
+        @media screen and (max-width: 900px) {
+          width: 3.9%;
+        }
+
+        @media screen and (max-width: 600px) {
+          width: 3%;
+        }
       }
-    }
 
-    &__rank {
-      width: 4%;
-
-      @media screen and (max-width: 900px) {
-        width: 4.8%;
-      }
-
-      @media screen and (max-width: 600px) {
+      &_rank {
         width: 4%;
-      }
-    }
 
-    &__name {
-      width: 21%;
+        @media screen and (max-width: 900px) {
+          width: 4.8%;
+        }
 
-      @media screen and (max-width: 900px) {
-        width: 17.8%;
-      }
-
-      @media screen and (max-width: 600px) {
-        width: 25%;
-      }
-    }
-
-    &__price {
-      width: 9%;
-
-      @media screen and (max-width: 900px) {
-        width: 11.3%;
+        @media screen and (max-width: 600px) {
+          width: 4%;
+        }
       }
 
-      @media screen and (max-width: 600px) {
-        width: 20%;
+      &_name {
+        width: 21%;
+
+        @media screen and (max-width: 900px) {
+          width: 17.8%;
+        }
+
+        @media screen and (max-width: 600px) {
+          width: 25%;
+        }
       }
-    }
 
-    &__percent {
-      width: 7%;
+      &_price {
+        width: 9%;
 
-      @media screen and (max-width: 900px) {
-        width: 8%;
+        @media screen and (max-width: 900px) {
+          width: 11.3%;
+        }
+
+        @media screen and (max-width: 600px) {
+          width: 20%;
+        }
       }
 
-      @media screen and (max-width: 600px) {
+      &_percent {
+        width: 7%;
+
+        @media screen and (max-width: 900px) {
+          width: 8%;
+        }
+
+        @media screen and (max-width: 600px) {
+          width: 10%;
+        }
+      }
+
+      &_avgprice {
+        width: 11.5%;
+
+        @media screen and (max-width: 900px) {
+          width: 11.3%;
+        }
+
+        @media screen and (max-width: 600px) {
+          width: 20%;
+        }
+      }
+
+      &_mcap {
         width: 10%;
-      }
-    }
 
-    &__avgprice {
-      width: 11.5%;
+        @media screen and (max-width: 900px) {
+          width: 10.2%;
+        }
 
-      @media screen and (max-width: 900px) {
-        width: 11.3%;
-      }
-
-      @media screen and (max-width: 600px) {
-        width: 20%;
-      }
-    }
-
-    &__mcap {
-      width: 10%;
-
-      @media screen and (max-width: 900px) {
-        width: 10.2%;
+        @media screen and (max-width: 600px) {
+          width: 18%;
+        }
       }
 
-      @media screen and (max-width: 600px) {
-        width: 18%;
+      &_volume {
+        width: 8.5%;
+
+        @media screen and (max-width: 900px) {
+          width: 10.7%;
+        }
       }
-    }
 
-    &__volume {
-      width: 8.5%;
+      &_supply {
+        width: 13.5%;
 
-      @media screen and (max-width: 900px) {
-        width: 10.7%;
+        @media screen and (max-width: 900px) {
+          width: 12.7%;
+        }
       }
-    }
 
-    &__supply {
-      width: 13.5%;
+      &_maxsupply {
+        width: 12.5%;
 
-      @media screen and (max-width: 900px) {
-        width: 12.7%;
-      }
-    }
-
-    &__maxsupply {
-      width: 12.5%;
-
-      @media screen and (max-width: 900px) {
-        width: 9.5%;
+        @media screen and (max-width: 900px) {
+          width: 9.5%;
+        }
       }
     }
   }

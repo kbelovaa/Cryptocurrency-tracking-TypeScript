@@ -1,38 +1,38 @@
-a {
-  text-decoration: none;
-  color: #fff;
-}
-
-td {
-  border: 1px solid #4e4d4d;
-  border-left: 0;
-  border-right: 0;
-  padding: 5px;
-  text-align: right;
-
-  @media screen and (max-width: 900px) {
-    height: 40px;
-    padding: 3px;
-  }
-}
-
 .table {
+  &__link {
+    text-decoration: none;
+    color: #fff;
+
+    &_adding {
+      color: rgb(53, 234, 36);
+    }
+
+    &_deleting {
+      color: rgb(255, 106, 106);
+    }
+  }
+
   &__currency-ticker {
     margin-left: 5px;
     color: #959494;
   }
 
-  &__percent_adding {
-    color: rgb(53, 234, 36);
-  }
+  &__cell {
+    border: 1px solid #4e4d4d;
+    border-left: 0;
+    border-right: 0;
+    padding: 5px;
+    text-align: right;
 
-  &__percent_deleting {
-    color: rgb(255, 106, 106);
-  }
+    @media screen and (max-width: 900px) {
+      height: 40px;
+      padding: 3px;
+    }
 
-  &__additional {
-    @media screen and (max-width: 600px) {
-      display: none;
+    &_additional {
+      @media screen and (max-width: 600px) {
+        display: none;
+      }
     }
   }
 }

@@ -1,7 +1,14 @@
-export const round = (number: string | number): number =>
-  Number(String(Math.round(Number(number) * 1000) / 1000).replace(/[,.]?0+$/, ''));
+export const round = (number: string | number, accuracy = 3): number => {
+  if (number === null) {
+    return 0;
+  }
+  if (Number(String(Math.round(Number(number) * 10 ** accuracy) / 10 ** accuracy).replace(/[,.]?0+$/, '')) === 0) {
+    return round(number, accuracy + 1);
+  }
+  return Number(String(Math.round(Number(number) * 10 ** accuracy) / 10 ** accuracy).replace(/[,.]?0+$/, ''));
+};
 
-export const convert = (number: string | null): number | string => {
+export const convert = (number: string | number | null): number | string => {
   if (number === null) {
     return 0;
   }
@@ -10,7 +17,7 @@ export const convert = (number: string | null): number | string => {
     case 1:
     case 2:
     case 3:
-      return Math.round(Number(number) * 100) / 100;
+      return round(number);
     case 4:
     case 5:
     case 6:
@@ -23,7 +30,11 @@ export const convert = (number: string | null): number | string => {
     case 11:
     case 12:
       return `${Math.round((Number(number) / 1000000000) * 100) / 100}B`;
+    case 13:
+    case 14:
+    case 15:
+      return `${Math.round((Number(number) / 1000000000000) * 100) / 100}Tr`;
     default:
-      return `${Math.round((Number(number) / 1000000000000) * 100) / 100}T`;
+      return `${Math.round((Number(number) / 1000000000000000) * 100) / 100}Q`;
   }
 };

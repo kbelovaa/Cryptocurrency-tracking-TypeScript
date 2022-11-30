@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-  entry: './src/pages/index.tsx',
+  entry: './src/index.tsx',
   devtool: 'inline-source-map',
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -16,6 +16,7 @@ module.exports = {
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
     alias: {
+      App: path.resolve(__dirname, 'src/app/'),
       Assets: path.resolve(__dirname, 'src/assets/'),
       Components: path.resolve(__dirname, 'src/components/'),
       Constants: path.resolve(__dirname, 'src/constants/'),

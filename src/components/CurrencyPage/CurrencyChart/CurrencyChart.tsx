@@ -23,6 +23,15 @@ interface CurrencyChartProps {
 
 const CurrencyChart: FC<CurrencyChartProps> = ({ currencyId }) => {
   const [history, setHistory] = useState<IHistory[]>([]);
+  const [screenWidth, setScreenWidth] = useState<number>(window.screen.width);
+
+  useEffect(() => {
+    const handleResizeWindow = () => setScreenWidth(window.screen.width);
+    window.addEventListener('resize', handleResizeWindow);
+    return () => {
+      window.removeEventListener('resize', handleResizeWindow);
+    };
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,8 +45,6 @@ const CurrencyChart: FC<CurrencyChartProps> = ({ currencyId }) => {
 
   const info: number[] = history.map((data: IHistory) => round(data.priceUsd));
   const labels: string[] = history.map((data: IHistory) => data.date.slice(5, 10));
-
-  const screenWidth: number = window.screen.width;
 
   return (
     <div className="chart">

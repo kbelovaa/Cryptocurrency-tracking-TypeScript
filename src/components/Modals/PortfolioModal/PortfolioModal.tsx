@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { IAddedCurrency } from 'Types/portfolio';
 import { ICurrency } from 'Types/currencies';
 import DeletingButton from 'Components/Modals/PortfolioModal/DeletingButton/DeletingButton';
-import { round } from 'Utils/roundingFunctions';
+import { round, convert } from 'Utils/roundingFunctions';
 import './PortfolioModal.scss';
 
 interface PortfolioModalProps {
@@ -16,15 +16,15 @@ const PortfolioModal: FC<PortfolioModalProps> = ({ currencies, addedCurrencies, 
     <h2 className="portfolio__name">Your portfolio</h2>
     {addedCurrencies.length !== 0 ? (
       <table className="portfolio-table">
-        <thead className="portfolio-table__head">
+        <thead className="portfolio-table-head">
           <tr>
-            <th></th>
-            <th>#</th>
-            <th>Name</th>
-            <th>Quantity</th>
-            <th>Old Price</th>
-            <th>Current Price</th>
-            <th>Total Price</th>
+            <th className="portfolio-table-head__cell"></th>
+            <th className="portfolio-table-head__cell">#</th>
+            <th className="portfolio-table-head__cell">Name</th>
+            <th className="portfolio-table-head__cell">Quantity</th>
+            <th className="portfolio-table-head__cell">Old Price</th>
+            <th className="portfolio-table-head__cell">Current Price</th>
+            <th className="portfolio-table-head__cell">Total Price</th>
           </tr>
         </thead>
         <tbody>
@@ -33,20 +33,22 @@ const PortfolioModal: FC<PortfolioModalProps> = ({ currencies, addedCurrencies, 
               const currency: ICurrency = currencies.filter((cur: ICurrency) => cur.id === addedCurrency.id)[0];
               return (
                 <tr key={currency.id + index} className="portfolio-table__row">
-                  <td>
+                  <td className="portfolio-table__cell">
                     <DeletingButton currencyDate={addedCurrency.date} />
                   </td>
-                  <td>{index + 1}</td>
-                  <td>
-                    <div className="portfolio-table__cell">
+                  <td className="portfolio-table__cell">{index + 1}</td>
+                  <td className="portfolio-table__cell">
+                    <div className="portfolio-table__cell-wrap">
                       <span className="portfolio-table__currency-name">{currency.name}</span>
                       <span className="portfolio-table__currency-ticker">{currency.symbol}</span>
                     </div>
                   </td>
-                  <td>{addedCurrency.quantity}</td>
-                  <td>${round(addedCurrency.firstPrice)}</td>
-                  <td>${round(currency.priceUsd)}</td>
-                  <td>${round(round(currency.priceUsd) * addedCurrency.quantity)}</td>
+                  <td className="portfolio-table__cell">{convert(addedCurrency.quantity)}</td>
+                  <td className="portfolio-table__cell">${round(addedCurrency.firstPrice)}</td>
+                  <td className="portfolio-table__cell">${round(currency.priceUsd)}</td>
+                  <td className="portfolio-table__cell">
+                    ${convert(Number(currency.priceUsd) * addedCurrency.quantity)}
+                  </td>
                 </tr>
               );
             }

@@ -20,6 +20,7 @@
     "noUnusedParameters": true,
     "lib": ["ES2021.String", "dom"],
     "paths": {
+      "App/*": ["src/app/*"],
       "Assets/*": ["src/assets/*"],
       "Components/*": ["src/components/*"],
       "Constants/*": ["src/constants/*"],

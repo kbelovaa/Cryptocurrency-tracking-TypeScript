@@ -23,12 +23,22 @@ const CurrencyPage: FC = () => {
     vwap24Hr: '',
     explorer: '',
   });
+  const [screenWidth, setScreenWidth] = useState<number>(window.screen.width);
+
   const navigate = useNavigate();
 
   const { id } = useParams<{ id: string }>();
 
   const allCurrencies = useTypedSelector<ICurrency[]>((state) => state.currencies.currencies);
   const curr: ICurrency = allCurrencies.filter((currencyObj: ICurrency) => currencyObj.id === id)[0];
+
+  useEffect(() => {
+    const handleResizeWindow = () => setScreenWidth(window.screen.width);
+    window.addEventListener('resize', handleResizeWindow);
+    return () => {
+      window.removeEventListener('resize', handleResizeWindow);
+    };
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -50,8 +60,6 @@ const CurrencyPage: FC = () => {
     return null;
   }
 
-  const screenWidth: number = window.screen.width;
-
   return (
     <div>
       <div className="container">
@@ -61,48 +69,56 @@ const CurrencyPage: FC = () => {
         <table className="table-currency">
           <thead className="table-head">
             <tr>
-              <th className="table-head__btn"></th>
-              <th className="table-head__rank">#</th>
-              <th className="table-head__name">Name</th>
-              <th className="table-head__price">Price</th>
-              <th className="table-head__percent">24h %</th>
-              <th className="table-head__avgprice">{screenWidth <= 600 ? 'Avg Price' : 'Avg Price (24h)'}</th>
-              <th className="table-head__mcap">Market Cap</th>
-              <th className="table-head__volume table__additional">Volume</th>
-              <th className="table-head__supply table__additional">
+              <th className="table-head__cell table-head__cell_btn"></th>
+              <th className="table-head__cell table-head__cell_rank">#</th>
+              <th className="table-head__cell table-head__cell_name">Name</th>
+              <th className="table-head__cell table-head__cell_price">Price</th>
+              <th className="table-head__cell table-head__cell_percent">24h %</th>
+              <th className="table-head__cell table-head__cell_avgprice">
+                {screenWidth <= 600 ? 'Avg Price' : 'Avg Price (24h)'}
+              </th>
+              <th className="table-head__cell table-head__cell_mcap">Market Cap</th>
+              <th className="table-head__cell table-head__cell_volume table__cell_additional">Volume</th>
+              <th className="table-head__cell table-head__cell_supply table__cell_additional">
                 {screenWidth <= 600 ? 'C. Supply' : 'Circulating Supply'}
               </th>
-              <th className="table-head__maxsupply table__additional">Max Supply</th>
+              <th className="table-head__cell table-head__cell_maxsupply table__cell_additional">Max Supply</th>
             </tr>
           </thead>
           <tbody>
             {currency.id !== '' && (
               <tr className="table__row">
-                <td>
+                <td className="table__cell">
                   <AddingButton currency={currency} />
                 </td>
-                <td>{currency.rank}</td>
-                <td>
-                  <div className="table__cell">
+                <td className="table__cell">{currency.rank}</td>
+                <td className="table__cell">
+                  <div className="table__cell-wrap">
                     {screenWidth > 600 && <span className="table__currency-name">{currency.name}</span>}
                     <span className="table__currency-ticker">{currency.symbol}</span>
                   </div>
                 </td>
-                <td>${screenWidth <= 600 ? convert(currency.priceUsd) : round(currency.priceUsd)}</td>
+                <td className="table__cell">
+                  ${screenWidth <= 600 ? convert(currency.priceUsd) : round(currency.priceUsd)}
+                </td>
                 <td
                   className={
-                    currency.changePercent24Hr.slice(0, 1) === '-' ? 'table__percent_deleting' : 'table__percent_adding'
+                    currency.changePercent24Hr.slice(0, 1) === '-'
+                      ? 'table__cell table__link_deleting'
+                      : 'table__cell table__link_adding'
                   }
                 >
                   {round(currency.changePercent24Hr)}%
                 </td>
-                <td>${screenWidth <= 600 ? convert(currency.priceUsd) : round(currency.vwap24Hr)}</td>
-                <td>${convert(currency.marketCapUsd)}</td>
-                <td className="table__additional">${convert(currency.volumeUsd24Hr)}</td>
-                <td className="table__additional">
+                <td className="table__cell">
+                  ${screenWidth <= 600 ? convert(currency.vwap24Hr) : round(currency.vwap24Hr)}
+                </td>
+                <td className="table__cell">${convert(currency.marketCapUsd)}</td>
+                <td className="table__cell table__cell_additional">${convert(currency.volumeUsd24Hr)}</td>
+                <td className="table__cell table__cell_additional">
                   {convert(currency.supply)} {currency.symbol}
                 </td>
-                <td className="table__additional">
+                <td className="table__cell table__cell_additional">
                   {convert(currency.maxSupply)} {currency.symbol}
                 </td>
               </tr>

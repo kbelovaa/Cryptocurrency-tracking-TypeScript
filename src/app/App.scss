@@ -4,12 +4,9 @@
   box-sizing: border-box;
 }
 
-html {
-  height: 100%;
-}
-
-body {
-  height: 100%;
+.content {
+  padding-bottom: 50px;
+  height: 100vh;
   background: rgb(36, 36, 38);
   background: linear-gradient(
       42deg,
@@ -22,6 +19,10 @@ body {
   background-attachment: fixed;
   color: #fff;
   font-family: 'Roboto', sans-serif;
+
+  @media screen and (max-width: 900px) {
+    padding-bottom: 30px;
+  }
 }
 
 .container {
@@ -30,7 +31,7 @@ body {
 }
 
 @media screen and (max-width: 1200px) {
-  body {
+  .content {
     font-size: 14px;
   }
 
@@ -40,7 +41,7 @@ body {
 }
 
 @media screen and (max-width: 900px) {
-  body {
+  .content {
     font-size: 12px;
   }
 
@@ -50,7 +51,7 @@ body {
 }
 
 @media screen and (max-width: 600px) {
-  body {
+  .content {
     font-size: 9px;
   }
 
@@ -60,7 +61,7 @@ body {
 }
 
 @media screen and (max-width: 360px) {
-  body {
+  .content {
     font-size: 8px;
   }
 

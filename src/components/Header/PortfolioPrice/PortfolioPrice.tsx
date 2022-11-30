@@ -1,7 +1,7 @@
 import React, { FC, useContext, useEffect, useState } from 'react';
 import { ICurrency } from 'Types/currencies';
 import { IAddedCurrency } from 'Types/portfolio';
-import { round } from 'Utils/roundingFunctions';
+import { round, convert } from 'Utils/roundingFunctions';
 import ModalsContext from 'Context/ModalsContext';
 import './PortfolioPrice.scss';
 
@@ -40,7 +40,7 @@ const PortfolioPrice: FC<PortfolioPriceProps> = ({ currencies, addedCurrencies, 
       {currencies.length !== 0 && (
         <>
           <p className="portfolio__title">Your portfolio</p>
-          <span className="portfolio__price">${round(totalPrice)}</span>
+          <span className="portfolio__price">${convert(totalPrice)}</span>
           <span
             className={
               totalPrice - firstPrice >= 0
@@ -48,7 +48,9 @@ const PortfolioPrice: FC<PortfolioPriceProps> = ({ currencies, addedCurrencies, 
                 : 'portfolio__diff portfolio__diff_minus'
             }
           >
-            {totalPrice - firstPrice >= 0 ? `+${round(totalPrice - firstPrice)}` : `${round(totalPrice - firstPrice)}`}{' '}
+            {totalPrice - firstPrice >= 0
+              ? `+${convert(totalPrice - firstPrice)}`
+              : `${convert(totalPrice - firstPrice)}`}{' '}
             ({round(((totalPrice - firstPrice) / firstPrice) * 100)} %)
           </span>
         </>

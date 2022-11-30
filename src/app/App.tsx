@@ -3,6 +3,7 @@ import { HashRouter, Route, Routes, Navigate } from 'react-router-dom';
 import Header from 'Components/Header/Header';
 import CurrencyPage from 'Components/CurrencyPage/CurrencyPage';
 import CurrenciesTable from 'Components/CurrenciesTable/CurrenciesTable';
+import 'Assets/fonts/fonts.scss';
 import './App.scss';
 
 const App: FC = () => (

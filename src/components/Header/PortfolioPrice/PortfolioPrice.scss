@@ -9,6 +9,9 @@
 
   @media screen and (max-width: 900px) {
     font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   @media screen and (max-width: 600px) {
